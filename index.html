@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazing Python Scripts Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans">
+
+    <header class="bg-blue-600 text-white py-12 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-4">Amazing Python Scripts</h1>
+            <p class="text-xl opacity-90">Una colección curada de herramientas, juegos y automatizaciones en Python.</p>
+            <div class="mt-8 flex justify-center gap-4">
+                <a href="https://github.com/Urichuche2/Amazing-Python-Scripts" target="_blank" class="bg-white text-blue-600 px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition">
+                    <i class="fab fa-github mr-2"></i>Ver Repositorio
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-4xl mx-auto -mt-8 px-4">
+        <input type="text" id="search" placeholder="Buscar un script (ej: Calculator, Face Detection, Game...)" 
+               class="w-full p-4 rounded-xl shadow-2xl border-none focus:ring-2 focus:ring-blue-400 text-lg outline-none">
+    </div>
+
+    <main class="max-w-7xl mx-auto py-12 px-4">
+        <div id="grid-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </div>
+    </main>
+
+    <footer class="text-center py-8 text-slate-500 border-t mt-12">
+        <p>Inspirado en el repositorio de <strong>Urichuche2</strong></p>
+    </footer>
+
+    <script>
+        // Datos de ejemplo basados en el repositorio
+        const scripts = [
+            { name: "Calculator GUI", desc: "Calculadora completa con interfaz gráfica.", category: "Herramientas", icon: "fa-calculator" },
+            { name: "Face Detection", desc: "Detección de rostros en tiempo real usando OpenCV.", category: "IA", icon: "fa-camera" },
+            { name: "2048 Game", desc: "El clásico juego de lógica programado íntegramente en Python.", category: "Juegos", icon: "fa-gamepad" },
+            { name: "URL Shortener", desc: "Acortador de enlaces con integración de API.", category: "Web", icon: "fa-link" },
+            { name: "Currency Converter", desc: "Conversor de divisas con tipos de cambio reales.", category: "Finanzas", icon: "fa-money-bill-trend-up" },
+            { name: "Weather App", desc: "Consulta el clima de cualquier ciudad del mundo.", category: "API", icon: "fa-cloud-sun" },
+            { name: "Screen Recorder", desc: "Graba tu pantalla de forma sencilla.", category: "Media", icon: "fa-video" },
+            { name: "Password Generator", desc: "Crea contraseñas seguras y aleatorias.", category: "Seguridad", icon: "fa-shield-halved" },
+            { name: "Image to Text (OCR)", desc: "Extrae texto de imágenes fácilmente.", category: "IA", icon: "fa-file-lines" }
+        ];
+
+        const container = document.getElementById('grid-container');
+        const searchInput = document.getElementById('search');
+
+        function displayScripts(filter = "") {
+            container.innerHTML = "";
+            const filtered = scripts.filter(s => s.name.toLowerCase().includes(filter.toLowerCase()));
+
+            filtered.forEach(script => {
+                container.innerHTML += `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 card-hover flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                                <i class="fas ${script.icon} text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">${script.name}</h3>
+                            <p class="text-slate-600 mb-4">${script.desc}</p>
+                            <span class="inline-block px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-xs font-semibold uppercase tracking-wider">${script.category}</span>
+                        </div>
+                        <a href="https://github.com/Urichuche2/Amazing-Python-Scripts/tree/main/${script.name.replace(/ /g, '%20')}" target="_blank" 
+                           class="mt-6 block text-center bg-slate-900 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+                            Explorar Código
+                        </a>
+                    </div>
+                `;
+            });
+        }
+
+        searchInput.addEventListener('input', (e) => displayScripts(e.target.value));
+        displayScripts(); // Carga inicial
+    </script>
+</body>
+</html>
